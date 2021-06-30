@@ -58,9 +58,26 @@ function App() {
         <p className="lead text-center">Images Search Engine</p>
         <Formulario 
           guardarBusqueda={guardarBusqueda}
+          guardarTotalPaginas={guardarTotalPaginas}
         />
+        
       </div>
+
       <div className="row justify-content-center">
+          {(paginaActual === 1) ? null : 
+            <button 
+              type="button"
+              className="btn btn-info mr-1"
+              onClick={paginaAnterior}
+            >&laquo; Back</button>
+          }
+          {(paginaActual === totalPaginas || totalPaginas === 0) ? null :
+            <button 
+              type="button"
+              className="btn btn-info"
+              onClick={paginaSiguiente}
+            >Next &raquo;</button>
+          }
         <ListadoImagenes 
           imagenes={imagenes}
         />
@@ -71,7 +88,7 @@ function App() {
             onClick={paginaAnterior}
           >&laquo; Back</button>
           }
-          {(paginaActual === totalPaginas) ? null :
+          {(paginaActual === totalPaginas || totalPaginas === 0) ? null :
           <button 
             type="button"
             className="btn btn-info"
